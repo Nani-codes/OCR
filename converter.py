@@ -70,7 +70,7 @@ def clean_extracted_text(text):
 
 if __name__ == '__main__':
     # Define the PDF path and output directory
-    pdf_path = '/home/nani/DQ/pdftojson/pdftojson/Adriann Brierley Face Sheet.pdf'  # Update with your PDF file path
+    pdf_path = '/home/dq/Desktop/demo/pdftojson/Allen Dunfee Face Sheet.pdf'  # Update with your PDF file path
     output_dir = 'output'  # Output directory to save the text file and processed images
     lang = 'eng'  # Language for Tesseract OCR
 
@@ -80,10 +80,16 @@ if __name__ == '__main__':
     # Clean and save the extracted text
     if text:
         cleaned_text = clean_extracted_text(text)
+        
+        # Print the cleaned text to the terminal
+        print("\nCleaned Extracted Text:")
+        print(cleaned_text)
+
+        # Save the cleaned text to a file
         output_text_file = os.path.join(output_dir, "output_text_1.txt")
         try:
             with open(output_text_file, 'w', encoding='utf-8') as file:
                 file.write(cleaned_text)
             print(f"OCR process completed. The cleaned extracted text has been saved to {output_text_file}")
         except Exception as e:
-            print(f"Error saving final text file:{e}")
+            print(f"Error saving final text file: {e}")
