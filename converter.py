@@ -3,31 +3,63 @@ import cv2
 import numpy as np
 import pytesseract
 from pdf2image import convert_from_path
+from PIL import Image
 import re
 
 def preprocess_image(image, output_dir, page_number):
     """Preprocess the image for better OCR results and save the processed image."""
-    # Convert to grayscale
-    gray = cv2.cvtColor(np.array(image), cv2.COLOR_BGR2GRAY)
+    try:
+        # Convert to grayscale
+        gray = cv2.cvtColor(np.array(image), cv2.COLOR_BGR2GRAY)
 
-    # Apply denoising
-    denoised = cv2.fastNlMeansDenoising(gray, h=30)
+        # Invert the image (make text white and background black)
+        inverted_image = cv2.bitwise_not(gray)
 
-    # Apply adaptive thresholding
-    binary = cv2.adaptiveThreshold(denoised, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                   cv2.THRESH_BINARY, 11, 2)
+        # Use morphology to remove lines
+        horizontal_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (40, 1))  # Horizontal line kernel
+        vertical_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 40))   # Vertical line kernel
 
-    # Morphological operations to remove noise
-    kernel = np.ones((2, 2), np.uint8)
-    cleaned = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
+        # Detect horizontal lines
+        horizontal_lines = cv2.morphologyEx(inverted_image, cv2.MORPH_OPEN, horizontal_kernel, iterations=2)
 
-    # Optional: Resize image for better OCR accuracy
-    resized = cv2.resize(cleaned, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_CUBIC)
+        # Detect vertical lines
+        vertical_lines = cv2.morphologyEx(inverted_image, cv2.MORPH_OPEN, vertical_kernel, iterations=2)
 
-    # Save the processed image
-    processed_image_path = os.path.join(output_dir, f'processed_page_{page_number}.png')
-    cv2.imwrite(processed_image_path, resized)
-    print(f"Processed image saved to {processed_image_path}")
+        # Combine horizontal and vertical lines
+        lines = cv2.add(horizontal_lines, vertical_lines)
+
+        # Subtract lines from the original image
+        cleaned_image = cv2.subtract(inverted_image, lines)
+
+        # Re-invert to restore original polarity
+        final_image = cv2.bitwise_not(cleaned_image)
+
+        # Apply denoising
+        denoised = cv2.fastNlMeansDenoising(final_image, h=30)
+
+        # Apply adaptive thresholding
+        binary = cv2.adaptiveThreshold(denoised, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                       cv2.THRESH_BINARY, 11, 2)
+
+        # Morphological operations to remove noise
+        kernel = np.ones((2, 2), np.uint8)
+        cleaned = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
+
+        # Optional: Resize image for better OCR accuracy
+        resized = cv2.resize(cleaned, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_CUBIC)
+
+        # Ensure output directory exists
+        os.makedirs(output_dir, exist_ok=True)
+        processed_image_path = os.path.join(output_dir, f'processed_page_{page_number}.png')
+        
+        # Save the processed image
+        if cv2.imwrite(processed_image_path, resized):
+            print(f"Processed image saved to {processed_image_path}")
+        else:
+            print(f"Failed to save processed image: {processed_image_path}")
+
+    except Exception as e:
+        print(f"Error during image preprocessing: {e}")
 
     return resized
 
@@ -70,7 +102,7 @@ def clean_extracted_text(text):
 
 if __name__ == '__main__':
     # Define the PDF path and output directory
-    pdf_path = '/home/dq/Desktop/demo/pdftojson/Allen Dunfee Face Sheet.pdf'  # Update with your PDF file path
+    pdf_path = '/home/poorna/Desktop/pdf2json/OCR/Adriann Brierley Face Sheet.pdf'  # Update with your PDF file path
     output_dir = 'output'  # Output directory to save the text file and processed images
     lang = 'eng'  # Language for Tesseract OCR
 
