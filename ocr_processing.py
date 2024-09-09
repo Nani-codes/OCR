@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import pytesseract
 from pdf2image import convert_from_path
+from concurrent.futures import ThreadPoolExecutor
 
 def preprocess_image(image, output_dir, page_number):
     try:
@@ -19,7 +20,7 @@ def preprocess_image(image, output_dir, page_number):
         final_image = cv2.bitwise_not(cleaned_image)
 
         denoised = cv2.fastNlMeansDenoising(final_image, h=30)
-        binary = cv2.adaptiveThreshold(denoised, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        binary = cv2.adaptiveThreshold(denoised, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 2)
         kernel = np.ones((2, 2), np.uint8)
         cleaned = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
         resized = cv2.resize(cleaned, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_CUBIC)
@@ -29,9 +30,14 @@ def preprocess_image(image, output_dir, page_number):
         cv2.imwrite(processed_image_path, resized)
 
     except Exception as e:
-        print(f"Error during image preprocessing: {e}")
+        print(f"Error during image preprocessing for page {page_number}: {e}")
 
     return resized
+
+def ocr_process_page(img, lang='eng', output_dir=None, page_number=None):
+    preprocessed_img = preprocess_image(img, output_dir, page_number)
+    text = pytesseract.image_to_string(preprocessed_img, lang=lang, config='--psm 4 --oem 3')
+    return text, preprocessed_img
 
 def ocr_process(pdf_path, lang='eng', output_dir=None):
     try:
@@ -41,11 +47,12 @@ def ocr_process(pdf_path, lang='eng', output_dir=None):
 
     extracted_text = ""
     processed_images = []
-    
-    for i, img in enumerate(images):
-        preprocessed_img = preprocess_image(img, output_dir, i + 1)
-        processed_images.append(preprocessed_img)
-        text = pytesseract.image_to_string(preprocessed_img, lang=lang, config='--psm 4 --oem 3')
-        extracted_text += text + "\n\n"
+
+    with ThreadPoolExecutor() as executor:
+        futures = [executor.submit(ocr_process_page, img, lang, output_dir, i + 1) for i, img in enumerate(images)]
+        for future in futures:
+            text, processed_img = future.result()
+            extracted_text += text + "\n\n"
+            processed_images.append(processed_img)
 
     return extracted_text, processed_images
