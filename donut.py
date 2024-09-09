@@ -3,6 +3,7 @@ from pdf2image import convert_from_path
 from PIL import Image
 import torch
 import re
+import json  # Import the JSON module
 
 # Initialize Donut Processor and Model
 processor = DonutProcessor.from_pretrained("naver-clova-ix/donut-base-finetuned-cord-v2")
@@ -12,7 +13,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
 
 # Task prompt specific to medical sheet
-task_prompt = "Extract medical information"
+task_prompt = "Extract Text"
 
 def process_image_with_donut(image_path, model, processor):
     image = Image.open(image_path)
@@ -58,9 +59,11 @@ def process_pdf_with_donut(pdf_path, model, processor):
 
         # Convert the extracted sequence to JSON
         json_output = processor.token2json(sequence)
+        
+        # Convert the JSON output (dict) to a string using json.dumps()
         json_path = f"{image_path}.json"
         with open(json_path, 'w') as f:
-            f.write(json_output)
+            f.write(json.dumps(json_output, indent=4))  # Write JSON string to file
         print(f"Saved JSON output to {json_path}")
 
 # Provide the path to your PDF containing medical sheets
