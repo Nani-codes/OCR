@@ -102,7 +102,7 @@ def clean_extracted_text(text):
 
 if __name__ == '__main__':
     # Define the PDF path and output directory
-    pdf_path = '/home/poorna/Desktop/pdf2json/OCR/Adriann Brierley Face Sheet.pdf'  # Update with your PDF file path
+    pdf_path = '/home/poorna/Desktop/pdf2json/OCR/Allen Dunfee Face Sheet.pdf'  # Update with your PDF file path
     output_dir = 'output'  # Output directory to save the text file and processed images
     lang = 'eng'  # Language for Tesseract OCR
 
