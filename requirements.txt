@@ -4,3 +4,4 @@ numpy
 pytesseract
 pdf2image
 Pillow
+pymupdf
