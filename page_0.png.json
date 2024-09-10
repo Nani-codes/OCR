@@ -1,3 +1,602 @@
 {
-    "text_sequence": "Extract Text D Extraction D Extraction Dread Dread Dread Extraction Drink 3600x CHARDrink 3 Drink Drink 3680 Extractions 3689 Extra 3 Drinks 3688 Drows 363 Drows 3688 Ds 3688 Ds 3688 Ds 3688 D 3688 D363 D363100g 363100g 363100363100 363363363363363 D363 D363 D363 D363 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D3 D50 D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g D50g DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow DPOSED Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D Brow D3100 Brow D3100 Blood Blood Blood Blood Blood Blood Blood Blood Blood Blood Blood Blood Blood Blood Blood"
+    "<s>": {
+        "text": "<s>",
+        "bounding_box": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "label": 3
+    },
+    "\u0120W": {
+        "text": "\u0120W",
+        "bounding_box": [
+            547,
+            930,
+            562,
+            939
+        ],
+        "label": 2
+    },
+    "\u0120w": {
+        "text": "\u0120w",
+        "bounding_box": [
+            95,
+            961,
+            120,
+            977
+        ],
+        "label": 2
+    },
+    "\u0120A": {
+        "text": "\u0120A",
+        "bounding_box": [
+            150,
+            816,
+            154,
+            823
+        ],
+        "label": 2
+    },
+    "\u0120D": {
+        "text": "\u0120D",
+        "bounding_box": [
+            843,
+            830,
+            850,
+            836
+        ],
+        "label": 2
+    },
+    "\u0120M": {
+        "text": "\u0120M",
+        "bounding_box": [
+            257,
+            778,
+            261,
+            785
+        ],
+        "label": 2
+    },
+    "\u0120I": {
+        "text": "\u0120I",
+        "bounding_box": [
+            682,
+            830,
+            684,
+            836
+        ],
+        "label": 2
+    },
+    "\u0120S": {
+        "text": "\u0120S",
+        "bounding_box": [
+            297,
+            778,
+            303,
+            785
+        ],
+        "label": 2
+    },
+    "\u0120O": {
+        "text": "\u0120O",
+        "bounding_box": [
+            740,
+            778,
+            748,
+            785
+        ],
+        "label": 2
+    },
+    "\u0120N": {
+        "text": "\u0120N",
+        "bounding_box": [
+            377,
+            816,
+            385,
+            823
+        ],
+        "label": 2
+    },
+    "\u0120R": {
+        "text": "\u0120R",
+        "bounding_box": [
+            601,
+            778,
+            608,
+            785
+        ],
+        "label": 2
+    },
+    "\u0120E": {
+        "text": "\u0120E",
+        "bounding_box": [
+            457,
+            844,
+            464,
+            852
+        ],
+        "label": 2
+    },
+    "\u0120C": {
+        "text": "\u0120C",
+        "bounding_box": [
+            404,
+            913,
+            414,
+            922
+        ],
+        "label": 2
+    },
+    "\u0120r": {
+        "text": "\u0120r",
+        "bounding_box": [
+            310,
+            763,
+            313,
+            769
+        ],
+        "label": 2
+    },
+    "\u0120b": {
+        "text": "\u0120b",
+        "bounding_box": [
+            442,
+            947,
+            447,
+            954
+        ],
+        "label": 2
+    },
+    "\u0120o": {
+        "text": "\u0120o",
+        "bounding_box": [
+            789,
+            778,
+            795,
+            783
+        ],
+        "label": 2
+    },
+    "\u0120s": {
+        "text": "\u0120s",
+        "bounding_box": [
+            836,
+            790,
+            842,
+            795
+        ],
+        "label": 2
+    },
+    "\u0120a": {
+        "text": "\u0120a",
+        "bounding_box": [
+            508,
+            947,
+            517,
+            956
+        ],
+        "label": 2
+    },
+    "\u0120l": {
+        "text": "\u0120l",
+        "bounding_box": [
+            543,
+            947,
+            548,
+            956
+        ],
+        "label": 2
+    },
+    "\u01203": {
+        "text": "\u01203",
+        "bounding_box": [
+            418,
+            930,
+            426,
+            939
+        ],
+        "label": 2
+    },
+    "\u01206": {
+        "text": "\u01206",
+        "bounding_box": [
+            537,
+            790,
+            544,
+            797
+        ],
+        "label": 4
+    },
+    "\u01208": {
+        "text": "\u01208",
+        "bounding_box": [
+            530,
+            790,
+            537,
+            797
+        ],
+        "label": 2
+    },
+    "\u01200": {
+        "text": "\u01200",
+        "bounding_box": [
+            840,
+            816,
+            846,
+            823
+        ],
+        "label": 2
+    },
+    "\u0120n": {
+        "text": "\u0120n",
+        "bounding_box": [
+            763,
+            805,
+            768,
+            809
+        ],
+        "label": 2
+    },
+    "\u0120t": {
+        "text": "\u0120t",
+        "bounding_box": [
+            436,
+            816,
+            443,
+            823
+        ],
+        "label": 4
+    },
+    "\u0120,": {
+        "text": "\u0120,",
+        "bounding_box": [
+            290,
+            788,
+            292,
+            790
+        ],
+        "label": 2
+    },
+    "\u0120H": {
+        "text": "\u0120H",
+        "bounding_box": [
+            281,
+            790,
+            288,
+            797
+        ],
+        "label": 2
+    },
+    "\u01204": {
+        "text": "\u01204",
+        "bounding_box": [
+            467,
+            790,
+            473,
+            797
+        ],
+        "label": 2
+    },
+    "\u01202": {
+        "text": "\u01202",
+        "bounding_box": [
+            937,
+            816,
+            942,
+            823
+        ],
+        "label": 2
+    },
+    "\u0120-": {
+        "text": "\u0120-",
+        "bounding_box": [
+            525,
+            882,
+            529,
+            884
+        ],
+        "label": 2
+    },
+    "\u01209": {
+        "text": "\u01209",
+        "bounding_box": [
+            548,
+            880,
+            556,
+            889
+        ],
+        "label": 2
+    },
+    "\u01207": {
+        "text": "\u01207",
+        "bounding_box": [
+            490,
+            790,
+            495,
+            797
+        ],
+        "label": 4
+    },
+    "\u0120T": {
+        "text": "\u0120T",
+        "bounding_box": [
+            551,
+            844,
+            559,
+            852
+        ],
+        "label": 4
+    },
+    "\u0120L": {
+        "text": "\u0120L",
+        "bounding_box": [
+            704,
+            805,
+            710,
+            811
+        ],
+        "label": 2
+    },
+    "\u0120:": {
+        "text": "\u0120:",
+        "bounding_box": [
+            923,
+            859,
+            924,
+            865
+        ],
+        "label": 2
+    },
+    "\u0120(": {
+        "text": "\u0120(",
+        "bounding_box": [
+            800,
+            774,
+            805,
+            788
+        ],
+        "label": 2
+    },
+    "\u0120)": {
+        "text": "\u0120)",
+        "bounding_box": [
+            813,
+            776,
+            816,
+            785
+        ],
+        "label": 2
+    },
+    "\u01205": {
+        "text": "\u01205",
+        "bounding_box": [
+            504,
+            790,
+            510,
+            797
+        ],
+        "label": 3
+    },
+    "\u0120g": {
+        "text": "\u0120g",
+        "bounding_box": [
+            938,
+            776,
+            944,
+            783
+        ],
+        "label": 2
+    },
+    "\u0120F": {
+        "text": "\u0120F",
+        "bounding_box": [
+            505,
+            844,
+            514,
+            852
+        ],
+        "label": 2
+    },
+    "\u0120X": {
+        "text": "\u0120X",
+        "bounding_box": [
+            424,
+            880,
+            445,
+            889
+        ],
+        "label": 2
+    },
+    "\u0120~": {
+        "text": "\u0120~",
+        "bounding_box": [
+            37,
+            871,
+            71,
+            890
+        ],
+        "label": 2
+    },
+    "\u0120p": {
+        "text": "\u0120p",
+        "bounding_box": [
+            762,
+            778,
+            768,
+            783
+        ],
+        "label": 2
+    },
+    "\u0120e": {
+        "text": "\u0120e",
+        "bounding_box": [
+            270,
+            763,
+            282,
+            769
+        ],
+        "label": 4
+    },
+    "\u0120i": {
+        "text": "\u0120i",
+        "bounding_box": [
+            477,
+            805,
+            479,
+            811
+        ],
+        "label": 4
+    },
+    "\u0120P": {
+        "text": "\u0120P",
+        "bounding_box": [
+            872,
+            778,
+            878,
+            785
+        ],
+        "label": 2
+    },
+    "\u0120f": {
+        "text": "\u0120f",
+        "bounding_box": [
+            118,
+            816,
+            123,
+            821
+        ],
+        "label": 2
+    },
+    "\u0120d": {
+        "text": "\u0120d",
+        "bounding_box": [
+            320,
+            831,
+            325,
+            837
+        ],
+        "label": 4
+    },
+    "\u0120m": {
+        "text": "\u0120m",
+        "bounding_box": [
+            345,
+            831,
+            354,
+            835
+        ],
+        "label": 4
+    },
+    "\u0120U": {
+        "text": "\u0120U",
+        "bounding_box": [
+            400,
+            831,
+            406,
+            837
+        ],
+        "label": 4
+    },
+    "\u0120|": {
+        "text": "\u0120|",
+        "bounding_box": [
+            704,
+            774,
+            704,
+            786
+        ],
+        "label": 2
+    },
+    "\u0120/": {
+        "text": "\u0120/",
+        "bounding_box": [
+            829,
+            815,
+            832,
+            823
+        ],
+        "label": 2
+    },
+    "\u0120B": {
+        "text": "\u0120B",
+        "bounding_box": [
+            100,
+            778,
+            102,
+            785
+        ],
+        "label": 2
+    },
+    "\u0120.": {
+        "text": "\u0120.",
+        "bounding_box": [
+            945,
+            778,
+            947,
+            780
+        ],
+        "label": 2
+    },
+    "\u0120#": {
+        "text": "\u0120#",
+        "bounding_box": [
+            541,
+            805,
+            547,
+            811
+        ],
+        "label": 2
+    },
+    "\u0120u": {
+        "text": "\u0120u",
+        "bounding_box": [
+            759,
+            774,
+            765,
+            788
+        ],
+        "label": 2
+    },
+    "\u0120h": {
+        "text": "\u0120h",
+        "bounding_box": [
+            120,
+            778,
+            125,
+            785
+        ],
+        "label": 2
+    },
+    "\u0120v": {
+        "text": "\u0120v",
+        "bounding_box": [
+            262,
+            763,
+            268,
+            769
+        ],
+        "label": 2
+    },
+    "\u0120c": {
+        "text": "\u0120c",
+        "bounding_box": [
+            615,
+            778,
+            621,
+            783
+        ],
+        "label": 4
+    },
+    "</s>": {
+        "text": "</s>",
+        "bounding_box": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "label": 3
+    }
 }

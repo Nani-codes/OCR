@@ -5,8 +5,8 @@ import pytesseract
 from pdf2image import convert_from_path
 from PIL import Image
 import re
-from transformers import pipeline
-import json
+import torch
+from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 def preprocess_image(image, output_dir, page_number):
     """Preprocess the image for better OCR results and save the processed image."""
@@ -102,17 +102,29 @@ def clean_extracted_text(text):
     cleaned_text = re.sub(r'\b(\d+)\s+(\d+)\b', r'\1\2', cleaned_text)  # Fix split numbers
     return cleaned_text.strip()
 
-def process_text_with_transformer(text):
-    """Process the extracted text with a transformer model."""
-    # Load a transformer model (e.g., for NER or text classification)
-    transformer_pipeline = pipeline("ner", model="dbmdz/bert-large-cased-finetuned-conll03-english")
+def convert_text_to_json_t5(text):
+    """Convert the cleaned text to JSON using the T5 model."""
+    try:
+        # Load T5 tokenizer and model
+        tokenizer = T5Tokenizer.from_pretrained("t5-base")
+        model = T5ForConditionalGeneration.from_pretrained("t5-base")
 
-    # Process the extracted text
-    results = transformer_pipeline(text)
+        # Prepare the text for the T5 model
+        input_text = f"extract structured information from: {text}"
+        input_ids = tokenizer.encode(input_text, return_tensors="pt", max_length=512, truncation=True)
 
-    # Convert results to JSON format
-    json_data = {'entities': results}
-    return json_data
+        # Generate JSON output
+        outputs = model.generate(input_ids, max_length=512, num_beams=4, early_stopping=True)
+        generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+        # Print the generated structured text
+        print("\nGenerated Structured Text (T5):")
+        print(generated_text)
+
+        return generated_text
+    except Exception as e:
+        print(f"Error during T5 conversion: {e}")
+        return None
 
 if __name__ == '__main__':
     # Define the PDF path and output directory
@@ -131,23 +143,14 @@ if __name__ == '__main__':
         print("\nCleaned Extracted Text:")
         print(cleaned_text)
 
-        # Save the cleaned text to a file
-        output_text_file = os.path.join(output_dir, "output_text_1.txt")
-        try:
-            with open(output_text_file, 'w', encoding='utf-8') as file:
-                file.write(cleaned_text)
-            print(f"OCR process completed. The cleaned extracted text has been saved to {output_text_file}")
-        except Exception as e:
-            print(f"Error saving final text file: {e}")
+        # Convert the cleaned text to JSON using the T5 model
+        structured_output = convert_text_to_json_t5(cleaned_text)
 
-        # Process the cleaned text with a transformer model
-        json_data = process_text_with_transformer(cleaned_text)
-        
-        # Save the JSON output
-        output_json_file = os.path.join(output_dir, "output_data.json")
+        # Save the structured output to a file
+        output_json_file = os.path.join(output_dir, "output_text_as_json.txt")
         try:
             with open(output_json_file, 'w', encoding='utf-8') as file:
-                json.dump(json_data, file, indent=4)
-            print(f"Transformer processing completed. The JSON data has been saved to {output_json_file}")
+                file.write(structured_output)
+            print(f"OCR process completed. The structured extracted text has been saved to {output_json_file}")
         except Exception as e:
-            print(f"Error saving JSON file: {e}")
+            print(f"Error saving final structured text file: {e}")
