@@ -88,7 +88,7 @@ def call_inference_model(text):
     """Calls the Hugging Face model to generate a raw response."""
     try:
         client = InferenceClient(
-            model="google/gemma-2-27b-it",  # Make sure this model is available
+            model="mistralai/Mixtral-8x7B-Instruct-v0.1",  # Make sure this model is available
             token="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",
         )
 
