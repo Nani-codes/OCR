@@ -5,6 +5,8 @@ import pytesseract
 from pdf2image import convert_from_path
 from PIL import Image
 import re
+from transformers import pipeline
+import json
 
 def preprocess_image(image, output_dir, page_number):
     """Preprocess the image for better OCR results and save the processed image."""
@@ -100,6 +102,18 @@ def clean_extracted_text(text):
     cleaned_text = re.sub(r'\b(\d+)\s+(\d+)\b', r'\1\2', cleaned_text)  # Fix split numbers
     return cleaned_text.strip()
 
+def process_text_with_transformer(text):
+    """Process the extracted text with a transformer model."""
+    # Load a transformer model (e.g., for NER or text classification)
+    transformer_pipeline = pipeline("ner", model="dbmdz/bert-large-cased-finetuned-conll03-english")
+
+    # Process the extracted text
+    results = transformer_pipeline(text)
+
+    # Convert results to JSON format
+    json_data = {'entities': results}
+    return json_data
+
 if __name__ == '__main__':
     # Define the PDF path and output directory
     pdf_path = '/home/poorna/Desktop/pdf2json/OCR/Allen Dunfee Face Sheet.pdf'  # Update with your PDF file path
@@ -125,3 +139,15 @@ if __name__ == '__main__':
             print(f"OCR process completed. The cleaned extracted text has been saved to {output_text_file}")
         except Exception as e:
             print(f"Error saving final text file: {e}")
+
+        # Process the cleaned text with a transformer model
+        json_data = process_text_with_transformer(cleaned_text)
+        
+        # Save the JSON output
+        output_json_file = os.path.join(output_dir, "output_data.json")
+        try:
+            with open(output_json_file, 'w', encoding='utf-8') as file:
+                json.dump(json_data, file, indent=4)
+            print(f"Transformer processing completed. The JSON data has been saved to {output_json_file}")
+        except Exception as e:
+            print(f"Error saving JSON file: {e}")
